@@ -2,13 +2,12 @@ package liberman;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 
 public class Library {
     private List<Book> listOfBook = new ArrayList<>();
 
-    public void addBooksToTheLibrary(Book book){
+    public void addBookToTheLibrary(Book book){
         listOfBook.add(book);
     }
     public void addBooksToTheLibrary(List<Book> listOfBookToAdd){
@@ -20,19 +19,20 @@ public class Library {
         }
     }
 
-    public void searchBookByName(String nameOfBook){
+    public Book searchBookByName(String nameOfBook){
         Book foundBook = listOfBook.stream()
                     .filter(book -> book.getNameOfBook().equalsIgnoreCase(nameOfBook))
                     .findFirst()
                     .orElse(null);
         if(foundBook == null) {
             System.out.println("Book not found");
-            return;
+            return foundBook;
         }
         System.out.println(foundBook);
+        return foundBook;
     }
 
-
-
-
+    public List<Book> getListOfBook() {
+        return listOfBook;
+    }
 }

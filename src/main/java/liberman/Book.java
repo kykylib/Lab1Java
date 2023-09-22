@@ -5,10 +5,10 @@ import java.util.Date;
 public class Book {
     private String nameOfBook;
     private String author;
-    private int numberISBN;
+    private long numberISBN;
     private Date year;
 
-    public Book(String nameOfBook, String author, int numberISBN, Date year) {
+    public Book(String nameOfBook, String author, long numberISBN, Date year) {
         this.nameOfBook = nameOfBook;
         this.author = author;
         this.numberISBN = numberISBN;
@@ -23,11 +23,21 @@ public class Book {
         return author;
     }
 
-    public int getNumberISBN() {
+    public long getNumberISBN() {
         return numberISBN;
     }
 
     public Date getYear() {
         return year;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "nameOfBook='" + nameOfBook + '\'' +
+                ", author='" + author + '\'' +
+                ", numberISBN=" + numberISBN +
+                ", year=" + year +
+                '}';
     }
 }
