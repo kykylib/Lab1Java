@@ -1,14 +1,12 @@
 package liberman;
 
-import java.util.Date;
-
-public class Book extends Item{
+public class DVD extends Item{
     private static int counterId = 1;
-    private String author;
+    private int duration;
 
-    public Book(String title, boolean isBorrowed, String author) {
+    public DVD(String title, boolean isBorrowed, int duration) {
         super(title, String.valueOf(counterId++), isBorrowed);
-        this.author = author;
+        this.duration = duration;
     }
 
     @Override
@@ -23,8 +21,8 @@ public class Book extends Item{
 
     @Override
     public String toString() {
-        return "Book{" +
-                "author='" + author  +
+        return "DVD{" +
+                "duration=" + duration +
                 "title=" + this.getTitle() +
                 "uniqueID=" + this.getUniqueID() +
                 "isBorrowed=" + this.isBorrowed() +
