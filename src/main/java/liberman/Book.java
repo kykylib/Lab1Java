@@ -6,8 +6,8 @@ public class Book extends Item{
     private static int counterId = 1;
     private String author;
 
-    public Book(String title, boolean isBorrowed, String author) {
-        super(title, String.valueOf(counterId++), isBorrowed);
+    public Book(String title, String author) {
+        super(title, String.valueOf(counterId++));
         this.author = author;
     }
 

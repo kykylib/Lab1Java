@@ -4,35 +4,74 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Library {
-    private List<Book> listOfBook = new ArrayList<>();
+public class Library implements IManageable {
+    private List<Item> itemList = new ArrayList<>();
+    private List<Patron> patronList = new ArrayList<>();
 
-    public void addBookToTheLibrary(Book book){
-        listOfBook.add(book);
+    public void registerPatron(Patron patron){
+        boolean havePatron = patronList.contains(patron);
+        if(havePatron){
+            System.out.println("Patron already have");
+            return;
+        }
+        patronList.add(patron);
     }
-    public void addBooksToTheLibrary(List<Book> listOfBookToAdd){
-        listOfBook.addAll(listOfBookToAdd);
-    }
-    public void showLibrary(){
-        for (Book book : listOfBook) {
-            System.out.println(book);
+
+    public void lendItem(Patron patron,Item item){
+        if(patronList.contains(patron))
+        {
+            List<Item> availableItems = listAvailable();
+            if(availableItems.contains(item))
+            {
+                patron.borrow(item);
+                item.setBorrowed(true);
+            }
         }
     }
 
-    public Book searchBookByName(String nameOfBook){
-        Book foundBook = listOfBook.stream()
-                    .filter(book -> book.getTitle().equalsIgnoreCase(nameOfBook))
-                    .findFirst()
-                    .orElse(null);
-        if(foundBook == null) {
-            System.out.println("Book not found");
-            return foundBook;
+    public void returnItem(Patron patron, Item item){
+        if(patronList.contains(patron))
+        {
+            List<Item> borrowedItems = listBorrowed();
+            if(borrowedItems.contains(item))
+            {
+                patron.borrowReturn(item);
+                item.setBorrowed(false);
+            }
         }
-        System.out.println(foundBook);
-        return foundBook;
     }
 
-    public List<Book> getListOfBook() {
-        return listOfBook;
+    @Override
+    public void add(Item item) {
+        boolean containsItem = itemList.contains(item);
+        if(containsItem){
+            System.out.println("Item already have");
+            return;
+        }
+        itemList.add(item);
+    }
+
+    @Override
+    public void remove(Item item) {
+        boolean containsItem = itemList.contains(item);
+        if(containsItem){
+            itemList.remove(item);
+            return;
+        }
+        System.out.println("Item not found");
+    }
+
+    @Override
+    public List<Item> listAvailable() {
+        return itemList.stream()
+                .filter(item -> !item.isBorrowed())
+                .toList();
+    }
+
+    @Override
+    public List<Item> listBorrowed() {
+        return itemList.stream()
+                .filter(item -> item.isBorrowed())
+                .toList();
     }
 }

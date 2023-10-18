@@ -3,12 +3,11 @@ package liberman;
 public abstract class Item {
     private String title;
     private String uniqueID;
-    private boolean isBorrowed;
+    private boolean isBorrowed = false;
 
-    public Item(String title, String uniqueID, boolean isBorrowed) {
+    public Item(String title, String uniqueID) {
         this.title = title;
         this.uniqueID = uniqueID;
-        this.isBorrowed = isBorrowed;
     }
 
     public abstract void borrowItem();

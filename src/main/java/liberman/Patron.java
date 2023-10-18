@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Patron {
+    private static int counterID = 1;
     private String name;
     private String ID;
     private List<Item> borrowedItems = new ArrayList<>();
 
-    public Patron(String name, String ID) {
+    public Patron(String name) {
         this.name = name;
-        this.ID = ID;
+        this.ID = String.valueOf(counterID++);
     }
 
     public void borrow(Item item){

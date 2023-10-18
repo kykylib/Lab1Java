@@ -4,8 +4,8 @@ public class DVD extends Item{
     private static int counterId = 1;
     private int duration;
 
-    public DVD(String title, boolean isBorrowed, int duration) {
-        super(title, String.valueOf(counterId++), isBorrowed);
+    public DVD(String title, int duration) {
+        super(title, String.valueOf(counterId++));
         this.duration = duration;
     }
 
