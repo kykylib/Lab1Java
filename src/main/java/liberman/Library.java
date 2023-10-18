@@ -21,7 +21,7 @@ public class Library {
 
     public Book searchBookByName(String nameOfBook){
         Book foundBook = listOfBook.stream()
-                    .filter(book -> book.getNameOfBook().equalsIgnoreCase(nameOfBook))
+                    .filter(book -> book.getTitle().equalsIgnoreCase(nameOfBook))
                     .findFirst()
                     .orElse(null);
         if(foundBook == null) {
